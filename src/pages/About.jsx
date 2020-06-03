@@ -2,8 +2,11 @@ import React from 'react'
 
 const About = (props) => {
     return (
-        <div>
-            <h1>About page</h1>
+        <div className="jumbotron">
+            <div className="container">
+                <h1 className="display-4">About page</h1>
+                <p className="lead">App version is <strong>1.0.0</strong></p>
+            </div>
         </div>
     )
 }
