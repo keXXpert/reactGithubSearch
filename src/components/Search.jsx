@@ -4,13 +4,15 @@ import { GithubContext } from '../context/github/githubContext'
 
 const Search = () => {
     const [value, setValue] = useState('')
-    const {show} = useContext(AlertContext)
-    const {search} = useContext(GithubContext)
+    const {show, hide} = useContext(AlertContext)
+    const {search, clearUsers} = useContext(GithubContext)
     const onSubmit = evt => {
         if (evt.key !== 'Enter') return 
+        clearUsers()
         if (value.trim()) {
             search(value.trim())
-            setValue('')
+            hide()
+            // setValue('')
         } else {
             show('Please enter a valid search request!')
         }
