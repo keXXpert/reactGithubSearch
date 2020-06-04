@@ -5,6 +5,7 @@ import { GithubContext } from './githubContext'
 
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
+const withCredentials = `client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
 
 const GithubState = ({ children }) => {
     const initialState = {
@@ -17,20 +18,23 @@ const GithubState = ({ children }) => {
     const [{user, users, loading, repos}, dispatch] = useReducer(githubReducer, initialState)
     const search = async value => {
         toggleLoading()
-        const response = await axios.get(`https://api.github.com/search/users?q=${value}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`)
+        const response = await axios.get(`https://api.github.com/search/users?q=${value}&${withCredentials}`)
         dispatch(setUsers(response.data.items))
-        console.log(response.data.items);
+        console.log('Fetched Users list' + response.data.items);
     }
 
     const getUser = async name => {
         toggleLoading()
-        // ...fetching data here
-        dispatch(setUser({}))
+        const response = await axios.get(`https://api.github.com/users/${name}?${withCredentials}`)
+        dispatch(setUser(response.data))
+        console.log('Fetched User data' + response.data);
+
     }
     const getRepos = async name => {
         toggleLoading()
-        // ...fetching data here
-        dispatch(setRepos([]))
+        const response = await axios.get(`https://api.github.com/users/${name}/repos?per_page=5&${withCredentials}`)
+        dispatch(setRepos(response.data))
+        console.log('Fetched User repos' + response.data);
     }
 
     const clearUsers = () => dispatch(clearUsersAC())

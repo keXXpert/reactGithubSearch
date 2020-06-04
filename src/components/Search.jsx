@@ -10,7 +10,6 @@ const Search = () => {
         if (evt.key !== 'Enter') return 
         if (value.trim()) {
             search(value.trim())
-            console.log('Make request with: '+ value);
             setValue('')
         } else {
             show('Please enter a valid search request!')
