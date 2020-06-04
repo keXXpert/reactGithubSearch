@@ -1,5 +1,5 @@
-const SHOW_ALERT = 'SHOW_ALERT'
-const HIDE_ALERT = 'HIDE_ALERT'
+const SHOW_ALERT = 'alert/SHOW_ALERT'
+const HIDE_ALERT = 'alert/HIDE_ALERT'
 
 const handlers = {
     [SHOW_ALERT]: (state, action) => action.payload,
