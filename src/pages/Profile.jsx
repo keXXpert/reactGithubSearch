@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { GithubContext } from '../context/github/githubContext'
 import { Link } from 'react-router-dom'
+import Repos from '../components/Repos'
 
 const Profile = ({ match }) => {
     const { getUser, getRepos, loading, user, repos } = useContext(GithubContext)
@@ -35,14 +36,16 @@ const Profile = ({ match }) => {
                                 {company && <li><strong>Company: </strong>{company}</li>}
                                 {blog && <li><strong>Blog page: </strong>{blog}</li>}
                             </ul>
-                            <div className="badge badge-primary">Followers: {followers}</div>
-                            <div className="badge badge-success">Following: {following}</div>
-                            <div className="badge badge-info">Public Repos: {public_repos}</div>
+                            <div className="badge badge-primary">Followers: {followers}</div>&nbsp;
+                            <div className="badge badge-success">Following: {following}</div>&nbsp;
+                            <div className="badge badge-info">Repos: {public_repos}</div>&nbsp;
                             <div className="badge badge-dark">Gists: {public_gists}</div>
                         </div>
                     </div>
                 </div>
             </div>
+            <h2>Repositories</h2>
+            <Repos repos={repos}/>
         </>
     )
 }
