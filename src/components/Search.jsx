@@ -12,7 +12,6 @@ const Search = () => {
         if (value.trim()) {
             search(value.trim())
             hide()
-            // setValue('')
         } else {
             show('Please enter a valid search request!')
         }
