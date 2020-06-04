@@ -9,6 +9,7 @@ const Profile = ({ match }) => {
     useEffect(() => {
         getUser(urlName)
         getRepos(urlName)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [urlName])
 
     if (loading) return <p className="text-center">Loading...</p>

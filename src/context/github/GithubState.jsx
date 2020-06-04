@@ -20,21 +20,17 @@ const GithubState = ({ children }) => {
         toggleLoading()
         const response = await axios.get(`https://api.github.com/search/users?q=${value}&${withCredentials}`)
         dispatch(setUsers(response.data.items))
-        console.log('Fetched Users list' + response.data.items);
     }
 
     const getUser = async name => {
         toggleLoading()
         const response = await axios.get(`https://api.github.com/users/${name}?${withCredentials}`)
         dispatch(setUser(response.data))
-        console.log('Fetched User data' + response.data);
-
     }
     const getRepos = async name => {
         toggleLoading()
         const response = await axios.get(`https://api.github.com/users/${name}/repos?per_page=5&${withCredentials}`)
         dispatch(setRepos(response.data))
-        console.log('Fetched User repos' + response.data);
     }
 
     const clearUsers = () => dispatch(clearUsersAC())
